@@ -276,9 +276,12 @@ function configSigmaElements(config) {
     }
     $GP.bg = $(sigInst._core.domElements.bg);
     $GP.bg2 = $(sigInst._core.domElements.bg2);
+    let sortedKeys = Object.keys(sigInst.clusters).sort((a,b) => sigInst.clusters[b].length - sigInst.clusters[a].length)
+    console.log(sortedKeys)
     var a = [],
-        b,x=1;
-        for (b in sigInst.clusters) a.push('<div style="line-height:12px"><a href="#' + b + '"><div style="width:40px;height:12px;border:1px solid #fff;background:' + b + ';display:inline-block"></div> ' + groupNames[x++] + ' (' + sigInst.clusters[b].length + ' members)</a></div>');
+        b = 1,
+        x = 0;
+    sortedKeys.forEach(key => a.push('<div style="line-height:12px"><a href="#' + key + '"><div style="width:40px;height:12px;border:1px solid #fff;background:' + key + ';display:inline-block"></div> ' + groupNames[x++] + ' (' + sigInst.clusters[key].length + ' members)</a></div>'))
     //a.sort();
     $GP.cluster.content(a.join(""));
     b = {
