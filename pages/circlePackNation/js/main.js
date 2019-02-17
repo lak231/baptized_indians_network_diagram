@@ -1,6 +1,15 @@
 var sigInst, canvas, $GP
 
-const groupNames = ['Delaware', 'Wampanoag', 'Mahican', 'Sopus Indian', 'Hooglander Indian', 'null', 'Hooglander', 'Menissink Indian', 'Shawnee']
+const groupNames = {
+    'rgb(223,137,255)': 'Delaware',
+    'rgb(115,192,0)': 'Wampanoag',
+    'rgb(0,196,255)': 'Mahican',
+    'rgb(76,70,62)': 'Sopus Indian',
+    'rgb(255,136,5)': 'Hooglander Indian',
+    'rgb(255,85,132)': 'null',
+    'rgb(0,189,148)': 'Hooglander',
+    'rgb(211,179,176)': 'Menissink Indian',
+    'rgb(192,192,192)': 'other'}
 //Load configuration file
 var config={};
 
@@ -277,11 +286,9 @@ function configSigmaElements(config) {
     $GP.bg = $(sigInst._core.domElements.bg);
     $GP.bg2 = $(sigInst._core.domElements.bg2);
     let sortedKeys = Object.keys(sigInst.clusters).sort((a,b) => sigInst.clusters[b].length - sigInst.clusters[a].length)
-    console.log(sortedKeys)
     var a = [],
-        b = 1,
-        x = 0;
-    sortedKeys.forEach(key => a.push('<div style="line-height:12px"><a href="#' + key + '"><div style="width:40px;height:12px;border:1px solid #fff;background:' + key + ';display:inline-block"></div> ' + groupNames[x++] + ' (' + sigInst.clusters[key].length + ' members)</a></div>'))
+        b = 1;
+    sortedKeys.forEach(key => a.push('<div style="line-height:12px"><a href="#' + key + '"><div style="width:40px;height:12px;border:1px solid #fff;background:' + key + ';display:inline-block"></div> ' + groupNames[key] + ' (' + sigInst.clusters[key].length + ' members)</a></div>'))
     //a.sort();
     $GP.cluster.content(a.join(""));
     b = {
